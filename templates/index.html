@@ -11,12 +11,14 @@
 	<tr>
 		<th>Task</th>
 		<th>Added</th>
+		<th>Progress</th>
 		<th>Actions</th>
 	</tr>
 	{% for data in data %}
 	<tr>
 		<td>{{ data[1] }}</td>
 		<td>{{ data[2] }}</td>
+		<td><progress value={{ data[3] }} max=100></progress></td>
 		<td><a href='/update/{{data[0]}}'>update</a><br>
 			<a href='/delete/{{data[0]}}'>delete</a>
 		</td>
@@ -25,7 +27,7 @@
 </table>
 	<div class='form'>
 		<form action="/" method="POST">
-            <input type="text" name="content" id="content">
+            <input type="text" name="content" id="content" required>
             <input type="submit" value="Add Task">
         </form>
 	</div>

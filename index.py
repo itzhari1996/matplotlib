@@ -14,7 +14,7 @@ def conndb(query):
 
 @app.route('/',methods=['POST','GET'])
 def index():
-    if request.method=='POST' and request.form['content']!='':
+    if request.method=='POST':
         content=request.form['content']
         try:
             query='INSERT INTO todo(content) VALUES ("'+content+'");'
@@ -39,7 +39,7 @@ def deletetask(id):
 @app.route('/update/<int:id>',methods=['GET','POST'])
 def update(id):
     if request.method=='POST':
-        query='update todo set content="'+request.form['content']+'" WHERE id='+str(id)
+        query='update todo set content="'+request.form['content']+'",progress='+request.form['progress']+' WHERE id='+str(id)
         try:
            conndb(query)
            return redirect('/')
